@@ -6,14 +6,10 @@ import json
 
 @csrf_exempt
 def get_path(request):
-	coordinates = []
-
-	if request.method == 'GET':
-		return
-
-	if request.method == 'POST':
-		coordinates = json.loads(request.POST.get('coordinates'))
-
-	res = plot(coordinates)
-
-	return HttpResponse(res)
+	if request.body:
+		points = json.loads(request.body)['points']
+		res = plot(points)
+		with open('tmp', 'w') as f:
+			f.write(res)
+		return HttpResponse(res)
+	return HttpResponse('null')
