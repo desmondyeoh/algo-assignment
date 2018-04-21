@@ -63,48 +63,35 @@ def hc_modify(matrix, origin=None, destination=None):
 	if origin == destination and destination != None:
 		raise Exception("origin and destination are same")
 
-	sum_of_cost = sum([sum(k) for k in matrix])
-
 	n = len(matrix) + 1
 	# add one vertex connected to other vertices with 0 cost
 	new_matrix = [[0 for x in range(n)] for y in range(n)] 
 	for row in range(n - 1):
 		for col in range(n - 1):
 			new_matrix[row + 1][col + 1] = matrix[row][col]
-	
-	# if origin and destination are not specified, return the new matrix
-	if origin == None and destination == None:
-		return new_matrix
-		
-	# destination is not specified
+
+	# origin is not specified
 	if origin == None and destination != None:
-		raise Exception("origin is not specified")
+		for row in range(1, n):
+			new_matrix[row][0] = float("inf")
+		new_matrix[destination + 1][0] = 0
 	
-	if origin == None or destination == None:
-		# make cost of edge between origin and added node very negative
-		new_matrix[0][origin + 1] = (2 - n) * sum_of_cost
-		for row in range(n - 1):
-			for col in range(n - 1):
-				if row == col:
-					continue
-				new_matrix[row + 1][col + 1] += sum_of_cost
-
-		return new_matrix
-
+	# destination is not specified
+	if origin != None and destination == None:
+		for col in range(1, n):
+			new_matrix[0][col] = float("inf")
+		new_matrix[0][origin + 1] = 0
+	
 	# disconnect edges except edges that connected to origin and destination
-	new_matrix[0][1:] = [float("inf")] * (n - 1)
-	for k in range(1, n - 1):
-		new_matrix[k][0] = float("inf")
+	if origin != None and destination != None:
+		new_matrix[0][1:] = [float("inf")] * (n - 1)
+		for k in range(1, n):
+			new_matrix[k][0] = float("inf")
 
-	# connect to origin and destination with negative cost
-	new_matrix[0][origin + 1] = (2 - n) * sum_of_cost
-	new_matrix[destination + 1][0] = (2 - n) * sum_of_cost
-	for row in range(n - 1):
-		for col in range(n - 1):
-			if row == col:
-				continue	
-			new_matrix[row + 1][col + 1] = matrix[row][col] + 2 * sum_of_cost
-
+		# connect to origin and destination with 0 cost
+		new_matrix[0][origin + 1] = 0
+		new_matrix[destination + 1][0] = 0
+	
 	return new_matrix
 
 
