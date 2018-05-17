@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ass</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'get_path/index.css' %}">
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src="{% static 'get_path/bootstrap3-typeahead.js' %}"></script>
+	<script src="{% static 'get_path/index.js' %}"></script>
+
+</head>
+<body>
+	<div class="container">
+		<center class="mt-5">
+			<img src="{% static 'get_path/um-logo.png' %}" height=100>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<img src="{% static 'get_path/fsktm-logo.jpg' %}" height=100>
+		</center>
+		<h1 class="mt-1">Minimize distance!</h1>
+
+		<div id="scn1">
+			<h3>Enter a few cities to start!</h3>
+			<div id="city-inputs">
+				<p class="city-recommend" id="city1-cr">City 1</p>
+				<div class="form-group">
+					<input 
+					class="typeahead form-control"
+					data-provide="typeahead"
+					type="text" 
+					class="city-input" 
+					id="city1"
+					name="city1"
+					placeholder="Enter city 1">
+				</div>
+
+				<p class="city-recommend" id="city2-cr">City 2</p>
+				<div class="form-group">
+					<input 
+					class="typeahead form-control"
+					data-provide="typeahead"
+					type="text" 
+					class="city-input" 
+					id="city2"
+					name="city2"
+					placeholder="Enter city 2">
+				</div>
+
+				<p class="city-recommend" id="city3-cr">City 3</p>
+				<div class="form-group">
+					<input 
+					class="typeahead form-control"
+					data-provide="typeahead"
+					type="text" 
+					class="city-input" 
+					id="city3"
+					name="city3"
+					placeholder="Enter city 3">
+				</div>
+
+				<p class="city-recommend" id="city4-cr">City 4</p>
+				<div class="form-group">
+					<input 
+					class="typeahead form-control"
+					data-provide="typeahead"
+					type="text" 
+					class="city-input" 
+					id="city4"
+					name="city4"
+					placeholder="Enter city 4">
+				</div>
+			</div>
+			<button class="btn btn-info" id="add-btn" >Add City</button>
+			<button class="btn btn-primary" id="next-btn">Next!</button>
+		</div>
+
+		<div id="scn2">
+			<h3>Choose your beginning and ending city</h3>
+			<div id="scn2body"></div>
+			<button class="btn btn-primary" id="calc-btn">Calculate!</button>
+
+		</div>
+
+		<div id="scn3">
+			<h3>Shortest Path!</h3>
+			<div id="scn3body"></div>
+			<p><span id="res-cost"></span></p>
+			<div id="res"></div>
+			<div id="plot"></div>
+
+		</div>
+
+
+	</div>
+</body>
+</html>

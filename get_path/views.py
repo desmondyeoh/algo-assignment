@@ -21,3 +21,6 @@ def get_path(request):
 		
 		return JsonResponse(res)
 	return HttpResponse('null')
+
+def index(request):
+	return render(request, 'get_path/index.html')
